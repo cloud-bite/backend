@@ -16,9 +16,10 @@ jobs:
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v0.5.0
       with:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}  # Use the secret containing your project ID
+        project_id: cloud-temp-400907
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         export_default_credentials: true
+
 
     - name: Configure Docker
       uses: docker/setup-buildx-action@v1
