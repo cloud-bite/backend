@@ -11,9 +11,11 @@ export const retrieveSecret = async (secretId: string) => {
 
 export const loadDatabaseSecrets = async () => {
   return {
-    DB_HOST: retrieveSecret(process.env.DB_HOST_SECRET),
-    DB_NAME: retrieveSecret(process.env.DB_NAME_SECRET),
-    DB_USER: retrieveSecret(process.env.DB_USER_SECRET),
-    DB_PASS: retrieveSecret(process.env.DB_PASS_SECRET),
+    database: {
+      host: await retrieveSecret(process.env.DB_HOST_SECRET),
+      name: await retrieveSecret(process.env.DB_NAME_SECRET),
+      user: await retrieveSecret(process.env.DB_USER_SECRET),
+      pass: await retrieveSecret(process.env.DB_PASS_SECRET),
+    }
   };
 };

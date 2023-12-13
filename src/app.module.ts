@@ -11,19 +11,21 @@ import { CustomConfigModule } from "./custom-config.module";
     CustomConfigModule,
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
-        type: "mysql",
-        host: configService.get<string>("DB_HOST"),
-        port: 3306,
-        username: configService.get<string>("DB_USER"),
-        password: configService.get<string>("DB_PASS"),
-        database: configService.get<string>("DB_NAME"),
-        entities: [Order],
-        synchronize: true,
-        retryAttempts: 50,
-      }),
+      useFactory: async (configService: ConfigService) => {
+        return {
+          type: "mysql",
+          host: configService.get<string>("database.host"),
+          port: 3306,
+          username: configService.get<string>("database.user"),
+          password: configService.get<string>("database.pass"),
+          database: configService.get<string>("database.name"),
+          entities: [Order],
+          synchronize: true,
+          retryAttempts: 50,
+        }
+      },
     }),
     OrderModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
