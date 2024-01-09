@@ -7,7 +7,7 @@ on:
 env:
   PROJECT_ID: cloud-temp-400907
   SERVICE: backend
-  REGION: europe-north1
+  REGION: us-central1
 
 jobs:
   deploy:
